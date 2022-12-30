@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "movies", partial: "movies/movie", locals: { movie: @movie } %>
+<%= turbo_stream.replace dom_id(Movie.new), partial: "movies/form", locals: { movie: Movie.new } %>
