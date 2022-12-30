@@ -9,7 +9,14 @@
 
   <%=render partial: "movies/form", locals: {movie: Movie.new}%>
 
+  <div class="my-2">
+    <h2 class="font-bold text-2xl">Search movies</h2>
+    <%=text_field_tag :q, params[:q], data: {reflex: "keyup->Home#search"}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+
   <div id="movies" class="min-w-full">
     <%= render @movies %>
   </div>
+  
 </div>
