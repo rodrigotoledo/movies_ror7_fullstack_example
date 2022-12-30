@@ -14,7 +14,7 @@
     <%=text_field_tag :q, params[:q], data: {reflex: "keyup->Home#search"}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-
+  <%=turbo_stream_from :movies %>
   <div id="movies" class="min-w-full">
     <%= render @movies %>
   </div>

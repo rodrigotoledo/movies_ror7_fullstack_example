@@ -213,6 +213,7 @@ DEPENDENCIES
   pry
   puma (~> 5.0)
   rails (~> 7.0.4)
+  redis (~> 5.0)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
