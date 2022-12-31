@@ -74,3 +74,5 @@ gem 'faker', '~> 3.1'
 gem "stimulus_reflex", "= 3.5.0.pre8"
 
 gem "redis", "~> 5.0"
+
+gem "devise", "~> 4.8"
