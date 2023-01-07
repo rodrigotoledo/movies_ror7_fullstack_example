@@ -13,3 +13,8 @@ eagerLoadControllersFrom('controllers', application)
 
 const consumer = await cable.getConsumer()
 StimulusReflex.initialize(application, { consumer, debug: true })
+
+import { Application } from '@hotwired/stimulus'
+import NestedForm from 'stimulus-rails-nested-form'
+const applicationHotwired = Application.start()
+applicationHotwired.register('nested-form', NestedForm)

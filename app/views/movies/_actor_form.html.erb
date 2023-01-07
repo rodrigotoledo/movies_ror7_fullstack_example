@@ -1,0 +1,10 @@
+<div class="nested-form-wrapper p-2 my-2 bg-gray-100 border rounded border-gray-300" data-new-record="<%= form.object.new_record? %>">
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <button type="button" class="rounded-lg p-2 bg-red-500 text-white text-sm"  data-action="nested-form#remove">Remove Actor</button>
+
+  <%= form.hidden_field :_destroy %>
+</div>

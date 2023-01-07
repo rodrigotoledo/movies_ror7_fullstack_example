@@ -6,4 +6,7 @@ class Movie < ApplicationRecord
   after_destroy do
     broadcast_remove_to('movies', target: "movie_#{id}")
   end
+
+  has_many :actors, dependent: :destroy
+  accepts_nested_attributes_for :actors, allow_destroy: true
 end

@@ -1,5 +1,10 @@
 <%=turbo_frame_tag movie do %>
-<%= form_with(model: movie, class: "contents") do |form| %>
+<%= form_with(model: movie, class: "contents", data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
+  <template data-nested-form-target="template">
+    <%= form.fields_for :actors, Actor.new, child_index: 'NEW_RECORD' do |actor_fields| %>
+      <%= render "actor_form", form: actor_fields %>
+    <% end %>
+  </template>
   <% if movie.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -17,8 +22,17 @@
     <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <h2 class="text-2xl font-bold">Actors</h2>
+  <%= form.fields_for :actors do |actor_fields| %>
+    <%= render "actor_form", form: actor_fields %>
+  <% end %>
+
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= button_tag 'Add Actor', type: :button, data: {action: 'nested-form#add'}, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer' %>
     <% unless movie.new_record? %>
     <%= link_to "Cancel", movie, class: 'rounded-lg py-3 px-5 bg-gray-500 text-white font-medium' %>
     <%= link_to "Destroy", movie, data: {turbo_method: :delete, turbo_confirm: "Are you sure about this"}, class: 'rounded-lg py-3 px-5 bg-red-500 text-white font-medium' %>
